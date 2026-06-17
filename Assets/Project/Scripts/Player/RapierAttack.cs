@@ -1,17 +1,28 @@
 using System.Runtime.CompilerServices;
+using System.Transactions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RapierAttack : MonoBehaviour
 {
     [SerializeField] private float dmg;
     [SerializeField] private float attackReach;
     [SerializeField] private float attackLength;
+    [SerializeField] private float hitDelay;
     [SerializeField] private float comboWindow;
 
    
 
     private int enemyLayerIndex = 7; // temp hardcoded
     private LayerMask targetLayer;
+    private bool comboHit;
+
+    public bool getComboHit => comboHit;
+    public float getComboWindow => comboWindow;
+
+    public float getHitDelay => hitDelay;
+    public float getAttackLength => attackLength;
+
 
     public void Awake()
     {
@@ -29,4 +40,6 @@ public class RapierAttack : MonoBehaviour
             //deal dmg 
         }
     }
+
+    
 }
