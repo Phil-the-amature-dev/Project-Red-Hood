@@ -15,8 +15,10 @@ static public class EditorCoreLoader
     {
         if (!Application.isEditor) return;
 
-        if (scene.name == "CoreScene")
+        if (scene.name == "CoreScene") return;
+        if (scene.name == "MainMenu")
         {
+            SceneManager.sceneLoaded -= OnSceneLoad; // Won't need to do it.
             return;
         }
 
