@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3461153490647445548}
   - component: {fileID: -5198736802293907435}
+  - component: {fileID: 272021365411319967}
   - component: {fileID: 7378870423075662253}
   - component: {fileID: 313035776101755080}
   - component: {fileID: 505534048064022894}
@@ -63,6 +64,19 @@ MonoBehaviour:
   penetration: 1
   parryCooldownMultiplier: 1.5
   maxParryDistance: 2
+--- !u!114 &272021365411319967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550847742285521869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee6fbb9b28dcbf04c9b33e01e421c4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attacks: []
 --- !u!114 &7378870423075662253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +177,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 83486474-1cef-4d51-b277-ea369ef36aed
     m_ActionName: 'Player/Fire[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 272021365411319967}
+        m_TargetAssemblyTypeName: Rapier, Assembly-CSharp
+        m_MethodName: OnAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2835ab37-a509-4d32-91b5-a0b9d5b46f53
+    m_ActionName: 'Player/Attack[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
