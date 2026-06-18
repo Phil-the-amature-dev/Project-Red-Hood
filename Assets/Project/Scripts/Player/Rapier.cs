@@ -11,14 +11,21 @@ public class Rapier : MonoBehaviour
     
 
     private int comboIndex = 0;
-    private float lastAttackTimeStamp;
+    private float lastAttackTimeStamp = 0;
     private float combowWindowStamp;
     private bool isAttacking;
     private float timeTillNextAttack;
 
     private RapierAttack attack;
-   
-    
+
+
+    public void Start()
+    {
+        Debug.Log(comboIndex);
+        lastAttackTimeStamp = 0;
+        attack = attacks[0];
+    }
+
     public void OnAttackInput(InputAction.CallbackContext context)
     {
 
@@ -33,11 +40,11 @@ public class Rapier : MonoBehaviour
                 if (comboIndex >= attacks.Count) { comboIndex = 0; } //resets index if at the end of combo
                 attack = attacks[comboIndex];
 
-                combowWindowStamp = Time.time - lastAttackTimeStamp;
-                lastAttackTimeStamp = Time.time;
+                if (Time.time - lastAttackTimeStamp > attack.getComboWindow) { comboIndex = 0; } //resets index if combow window is missed
+                StartCoroutine(ExecuteAttack(attack));
+                comboIndex += 1;
 
-                if (combowWindowStamp > attack.getComboWindow) { comboIndex = 0; } //resets index if combow window is missed
-                ExecuteAttack(attack);
+                lastAttackTimeStamp = Time.time;
             }
         }
         
@@ -49,6 +56,7 @@ public class Rapier : MonoBehaviour
         {
             if (Time.time < lastAttackTimeStamp + attack.getAttackLength)
             {
+                
                 return;
             }
             else
@@ -60,15 +68,15 @@ public class Rapier : MonoBehaviour
     }
 
 
-    IEnumerator ExecuteAttack(RapierAttack attack)
+    public IEnumerator ExecuteAttack(RapierAttack attack)
     {
-        RapierAttack previousAttack = attacks[(comboIndex - 1 + attacks.Count) % attacks.Count];
+        //RapierAttack previousAttack = attacks[(comboIndex - 1 + attacks.Count) % attacks.Count];
 
 
-        yield return new WaitForSeconds(attack.getHitDelay);
-        attack.Attack(transform.position, transform.forward);
+        //play animation
+        yield return new WaitForSeconds(attack.getHitDelay); //waits for apex of attack (aka when the ray should cast)
+        attack.Attack(transform.position, transform.forward); //cast ray
         Debug.Log("Combo Index: " + comboIndex);
-        comboIndex += 1;
     }
 
     void OnDrawGizmos()
