@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class RapierAttack : MonoBehaviour
 {
+    
+    
     [SerializeField] private float dmg;
     [SerializeField] private float attackReach;
     [SerializeField] private float attackLength;
@@ -22,6 +24,7 @@ public class RapierAttack : MonoBehaviour
 
     public float getHitDelay => hitDelay;
     public float getAttackLength => attackLength;
+    public float getAttackReach => attackReach;
 
 
     public void Awake()
